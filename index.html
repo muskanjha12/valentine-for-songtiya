@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For My Songtiya 💖</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      padding: 20px;
+    }
+    h1 { margin-top: 30px; color: #ff0066; }
+    p { font-size: 18px; margin: 10px 0; }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      position: absolute;
+    }
+    #yes { background-color: #ff4d88; color: white; left: 40%; top: 65%; }
+    #no  { background-color: #999; color: white; left: 55%; top: 65%; }
 
+    .heart {
+      font-size: 40px;
+      animation: float 1.5s infinite;
+      margin: 15px 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    #msgBox { margin-top: 20px; }
+    #nextBtn {
+      position: static;
+      margin-top: 15px;
+      background: #ff4d88;
+      color: #fff;
+    }
+    #musicBtn {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #ff99bb;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>⚠️ Warning, Songtiya!</h1>
+  <p>You’ve officially stolen my heart 💘😜</p>
+  <p>Will you be my Valentine? 💖</p>
+
+  <button id="yes" onclick="startDrama()">YES 💕</button>
+  <button id="no" onmouseover="moveNo()">NO 😏</button>
+
+  <!-- Optional soft background music (toggle) -->
+  <audio id="bgm" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b4c6c1f7a.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
+
+  <script>
+    function moveNo() {
+      let x = Math.random() * (window.innerWidth - 100);
+      let y = Math.random() * (window.innerHeight - 50);
+      document.getElementById("no").style.left = x + "px";
+      document.getElementById("no").style.top = y + "px";
+    }
+
+    const messages = [
+      "Okay okay… sach bol rahi hoon 😜",
+      "😏 I know you are not that much sunder…",
+      "💗 But for me, you are my sukoon 🫶",
+      "✨ Jiski muskan poore chand ko fenk kar sakti hai 🌙😉",
+      "❤️ 💕 💘 💝",
+      "I love you always ❤️",
+      "Sorry… I love teasing you always 😜💋",
+      "— From your bandriya 🐒💖",
+      "Muskan"
+    ];
+
+    let idx = 0;
+
+    function startDrama() {
+      document.body.innerHTML = `
+        <h1>YAYYYY 😍💖</h1>
+        <div id="msgBox"></div>
+        <button id="nextBtn" onclick="nextMsg()">Next 😜</button>
+      `;
+    }
+
+    function nextMsg() {
+      const box = document.getElementById("msgBox");
+      if (idx < messages.length) {
+        if (messages[idx].includes("❤️")) {
+          box.innerHTML += '<div class="heart">❤️ 💕 💘 💝</div>';
+        } else {
+          box.innerHTML += `<p>${messages[idx]}</p>`;
+        }
+        idx++;
+      } else {
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    }
+
+    function toggleMusic() {
+      const m = document.getElementById("bgm");
+      if (m.paused) m.play(); else m.pause();
+    }
+  </script>
+
+</body>
+</html>
